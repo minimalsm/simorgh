@@ -6,7 +6,7 @@ const generateVideoBlock = block => {
     type: 'aresMediaMetadata',
     blockId: `urn:bbc:ares::${block.subType}:${block.id}`,
     model: {
-      ...pick(['embedding', 'id', 'subType', 'live'], block),
+      ...pick(['embedding', 'id', 'subType', 'live', 'available'], block),
       format: block.format === 'video' ? 'audio_video' : block.format,
       title: block.caption,
       imageCopyright: path(['image', 'copyrightHolder'], block),

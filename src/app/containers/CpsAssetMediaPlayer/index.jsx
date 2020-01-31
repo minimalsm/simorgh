@@ -15,6 +15,8 @@ import {
   emptyBlockArrayDefaultProps,
 } from '#models/propTypes';
 
+import filterForBlockType from '#lib/utilities/blockHandlers';
+
 const Wrapper = styled(GridItemConstrainedLarge)`
   margin-top: ${GEL_SPACING_DBL};
 
@@ -31,14 +33,24 @@ const Wrapper = styled(GridItemConstrainedLarge)`
 const CpsAssetMediaPlayerContainer = ({ blocks, assetUri }) => {
   if (!assetUri) return null;
 
+  const mediaBlock = filterForBlockType(blocks, 'aresMedia');
+  const metadataBlock = filterForBlockType(
+    mediaBlock.model.blocks,
+    'aresMediaMetadata',
+  );
+
   return (
     <Wrapper>
-      <MediaPlayerContainer
-        blocks={blocks}
-        assetId={assetUri.substr(1)}
-        assetType="cps"
-        showPlaceholder={false}
-      />
+      {metadataBlock.model.available ? (
+        <MediaPlayerContainer
+          blocks={blocks}
+          assetId={assetUri.substr(1)}
+          assetType="cps"
+          showPlaceholder={false}
+        />
+      ) : (
+        'no'
+      )}
     </Wrapper>
   );
 };
