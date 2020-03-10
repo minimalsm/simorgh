@@ -1,11 +1,13 @@
-import React, { useContext } from 'react';
+import React, { useContext, memo } from 'react';
 import { string, bool } from 'prop-types';
 import { useLocation } from 'react-router-dom';
 import moment from 'moment-timezone';
 import pathOr from 'ramda/src/pathOr';
 import path from 'ramda/src/path';
+import equals from 'ramda/src/equals';
 import Figure from '@bbc/psammead-figure';
 import styled from 'styled-components';
+import memoizeWith from 'ramda/src/memoizeWith';
 import {
   CanonicalMediaPlayer,
   AmpMediaPlayer,
@@ -25,6 +27,32 @@ import {
   mediaPlayerPropTypes,
   emptyBlockArrayDefaultProps,
 } from '#models/propTypes';
+
+const generateMediaInfo = memoizeWith(
+  JSON.stringify,
+  ({
+    title,
+    duration,
+    durationSpokenPrefix,
+    separator,
+    datetime,
+    type,
+    guidanceMessage,
+  }) => {
+    console.log('calling');
+    return {
+      title,
+      duration: formatDuration({ duration, padMinutes: true }),
+      durationSpoken: `${durationSpokenPrefix} ${formatDuration({
+        duration,
+        separator,
+      })}`,
+      datetime,
+      type,
+      guidanceMessage,
+    };
+  },
+);
 
 const DEFAULT_WIDTH = 512;
 const MediaPlayerContainer = ({
@@ -78,16 +106,17 @@ const MediaPlayerContainer = ({
     ['media', 'duration'],
     translations,
   );
-  const separator = ',';
 
-  const mediaInfo = {
+  if (!(versionId || blockId)) {
+    return null; // this should be the holding image with an error overlay
+  }
+
+  const mediaInfo = generateMediaInfo({
     title: path(['model', 'blocks', 0, 'model', 'title'], aresMediaBlock),
-    duration: formatDuration({ duration, padMinutes: true }),
-    durationSpoken: `${durationSpokenPrefix} ${formatDuration({
-      duration,
-      separator,
-    })}`,
-    datetime: path(
+    duration,
+    durationSpokenPrefix,
+    separator: ',',
+    dateTime: path(
       ['model', 'blocks', 0, 'model', 'versions', 0, 'durationISO8601'],
       aresMediaBlock,
     ),
@@ -96,11 +125,7 @@ const MediaPlayerContainer = ({
       ['model', 'blocks', 0, 'model', 'versions', 0, 'warnings', 'short'],
       aresMediaBlock,
     ),
-  };
-
-  if (!(versionId || blockId)) {
-    return null; // this should be the holding image with an error overlay
-  }
+  });
 
   const placeholderSrcset = getPlaceholderSrcSet({ originCode, locator });
   const placeholderSrc = buildIChefURL({
@@ -115,6 +140,7 @@ const MediaPlayerContainer = ({
     isAmp,
     queryString: location.search,
   });
+
   const iframeTitle = pathOr(
     'Media player',
     ['mediaAssetPage', 'mediaPlayer'],
@@ -151,6 +177,18 @@ const MediaPlayerContainer = ({
     );
   }
 
+  const DebugWrapper = memo(
+    props => {
+      console.log('rerendering');
+      return <CanonicalMediaPlayer {...props} />;
+    },
+    (props, nextProps) => {
+      console.log('evaluating memo');
+      console.log(equals(props, nextProps));
+      return true;
+    },
+  );
+
   return (
     <>
       <Metadata aresMediaBlock={aresMediaBlock} embedSource={embedSource} />
@@ -165,7 +203,7 @@ const MediaPlayerContainer = ({
             service={service}
           />
         ) : (
-          <CanonicalMediaPlayer
+          <DebugWrapper
             src={embedSource}
             placeholderSrc={placeholderSrc}
             placeholderSrcset={placeholderSrcset}
@@ -197,4 +235,7 @@ MediaPlayerContainer.defaultProps = {
   isLegacyMedia: false,
 };
 
-export default MediaPlayerContainer;
+export default memo(MediaPlayerContainer, (props, nextProps) => {
+  console.log('memo evaluating for MediaPlayerContainer');
+  return true;
+});
