@@ -9,29 +9,32 @@ import useToggle from '../Toggle/useToggle';
 const logger = webLogger();
 
 const IncludeContainer = ({ href }) => {
-  const [markup, setMarkup] = useState(null);
+  let markup;
   const [hasError, setError] = useState(false);
   const { enabled } = useToggle('include');
 
-  useEffect(() => {
-    const fetchMarkup = async () => {
-      try {
-        const res = await fetch(href);
-        if (res.status !== 200) {
-          throw new Error('Failed to fetch');
-        } else {
-          const html = await res.text();
-          setMarkup(html);
-        }
-      } catch (e) {
-        setError(true);
-        logger.error(`HTTP Error: "${e}"`);
+  let fetchComplete = false;
+
+  const fetchMarkup = async () => {
+    try {
+      const res = await fetch(href);
+      if (res.status !== 200) {
+        throw new Error('Failed to fetch');
+      } else {
+        markup = await res.text();
       }
-    };
-    if (enabled) {
-      fetchMarkup();
+    } catch (e) {
+      setError(true);
+      logger.error(`HTTP Error: "${e}"`);
+    } finally {
+      fetchComplete = true;
     }
-  }, [href, enabled]);
+  };
+  if (enabled) {
+    fetchMarkup();
+  }
+
+  while (!fetchComplete);
 
   const shouldNotDisplayInclude = hasError || !markup || !enabled;
 
