@@ -11,6 +11,7 @@ import {
 import { C_GHOST } from '@bbc/psammead-styles/colours';
 import ResourceHints from '#app/components/ResourceHints';
 import IfAboveIE9 from '#app/components/IfAboveIE9Comment';
+import { htmlEscape } from 'escape-goat';
 
 /* eslint-disable react/prop-types */
 const Document = ({
@@ -27,7 +28,8 @@ const Document = ({
   const title = helmet.title.toComponent();
   const links = helmet.link.toComponent();
   const headScript = helmet.script.toComponent();
-  const serialisedData = JSON.stringify(data);
+  const serialisedData = htmlEscape(JSON.stringify(data));
+
   const scriptsAllowed = !isAmp;
   const StyledDiv = styled.div`
     min-height: 100vh;
@@ -79,7 +81,7 @@ const Document = ({
           <script
             /* eslint-disable-next-line react/no-danger */
             dangerouslySetInnerHTML={{
-              __html: `window.SIMORGH_DATA=${serialisedData}`,
+              __html: `window.SIMORGH_DATA="${serialisedData}"`,
             }}
           />
         )}

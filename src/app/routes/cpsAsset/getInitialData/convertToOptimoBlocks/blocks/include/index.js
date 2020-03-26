@@ -30,7 +30,7 @@ const fetchMarkup = async url => {
       throw new Error('Failed to fetch');
     } else {
       const html = await res.text();
-      return encodeHTML(html);
+      return html;
     }
   } catch (e) {
     logger.error(
