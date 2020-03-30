@@ -158,6 +158,7 @@ export const service = {
         listen: 'Listen',
         watch: 'Watch',
         liveLabel: 'Moja kwa moja',
+        nextLabel: 'NEXT',
         previousRadioShow: 'Previous radio show',
         nextRadioShow: 'Next radio show',
         duration: 'Duration',
@@ -230,16 +231,8 @@ export const service = {
         url: '/swahili/media/video',
       },
       {
-        title: 'Sauti',
-        url: '/swahili/media/audio',
-      },
-      {
         title: 'Vipindi vya Redio',
         url: '/swahili/kwa_kina/redio',
-      },
-      {
-        title: 'Picha',
-        url: '/swahili/media/photogalleries',
       },
     ],
   },

@@ -160,6 +160,7 @@ export const service = {
         listen: 'सुनिए',
         watch: 'देखिए',
         liveLabel: 'लाइव',
+        nextLabel: 'NEXT',
         previousRadioShow: 'पिछला रेडियो शो',
         nextRadioShow: 'अगला रेडियो शो',
         duration: 'अवधि',
@@ -249,10 +250,6 @@ export const service = {
       {
         title: 'वीडियो',
         url: '/hindi/media/video',
-      },
-      {
-        title: 'तस्वीरें',
-        url: '/hindi/media/photogalleries',
       },
       {
         title: 'बीबीसी स्पेशल',

@@ -161,6 +161,7 @@ export const service = {
         listen: 'Listen',
         watch: 'و یې ګورئ',
         liveLabel: 'ژوندۍ',
+        nextLabel: 'NEXT',
         previousRadioShow: 'Previous radio show',
         nextRadioShow: 'Next radio show',
         duration: 'Duration',
@@ -248,10 +249,6 @@ export const service = {
       {
         title: 'ويډيوګانې',
         url: '/pashto/media/video',
-      },
-      {
-        title: 'انځورونه',
-        url: '/pashto/media/photogalleries',
       },
       {
         title: 'ځانګړې پاڼې',

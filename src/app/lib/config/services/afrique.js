@@ -163,6 +163,7 @@ export const service = {
         listen: 'Listen',
         watch: 'Suivez',
         liveLabel: 'EN DIRECT',
+        nextLabel: 'NEXT',
         previousRadioShow: 'Previous radio show',
         nextRadioShow: 'Next radio show',
         duration: 'Duration',
@@ -264,10 +265,6 @@ export const service = {
       {
         title: 'Vidéos',
         url: '/afrique/media/video',
-      },
-      {
-        title: 'En images',
-        url: '/afrique/media/photogalleries',
       },
       {
         title: 'Nos émissions',

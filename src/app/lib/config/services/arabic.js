@@ -160,6 +160,7 @@ export const service = {
         listen: 'Listen',
         watch: 'Watch',
         liveLabel: 'مباشر',
+        nextLabel: 'NEXT',
         previousRadioShow: 'Previous radio show',
         nextRadioShow: 'Next radio show',
         duration: 'Duration',
@@ -269,10 +270,6 @@ export const service = {
       {
         title: 'صحافة',
         url: '/arabic/inthepress',
-      },
-      {
-        title: 'صور',
-        url: '/arabic/media/photogalleries',
       },
       {
         title: 'برامجنا',
