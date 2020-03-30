@@ -6,19 +6,10 @@ import { ClientApp } from './app/containers/App';
 import routes from './app/routes';
 import { template, templateStyles } from '#lib/joinUsTemplate';
 import loggerNode from '#lib/logger.node';
-import { htmlUnescape } from 'escape-goat';
 
 const logger = loggerNode();
 
-let data;
-if (window.SIMORGH_DATA) {
-  const unescaped = htmlUnescape(window.SIMORGH_DATA);
-  console.log(unescaped);
-  data = JSON.parse(unescaped);
-} else {
-  data = {};
-}
-
+const data = window.SIMORGH_DATA || {};
 const root = document.getElementById('root');
 
 // Only hydrate the client if we're on the expected path
