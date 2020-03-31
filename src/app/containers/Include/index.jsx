@@ -39,10 +39,7 @@ const IncludeContainer = ({ html, type }) => {
 
   return (
     <GridItemConstrainedMedium>
-      <div
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{ __html: decodeHTML(html) }}
-      />
+      <div dangerouslySetInnerHTML={{ __html: html }} />
     </GridItemConstrainedMedium>
   );
 };
