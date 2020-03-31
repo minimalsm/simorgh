@@ -11,18 +11,6 @@ const includeUrls = {
   idt1: 'https://simorgh-include-test.s3-eu-west-1.amazonaws.com/idt1.html',
 };
 
-/* This ensures the Include markup is encoded before being added
-   in the page data because serializing window.SIMORGH_DATA with an html string
-    as part of the JSON will result in having some characters unescaped.
-*/
-const encodeHTML = str =>
-  String(str)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
-    .replace(/"/g, '&quot;')
-    .replace(/'/g, '&#39;');
-
 const fetchMarkup = async url => {
   try {
     /* The timeout value here is arbitrary and subject to change. It's purpose is to ensure that pending promises do not delay page rendering on the server.
