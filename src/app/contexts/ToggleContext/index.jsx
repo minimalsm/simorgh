@@ -68,8 +68,12 @@ const ToggleContextConsumer = ToggleContext.Consumer;
 
 ToggleContextProvider.propTypes = {
   children: node.isRequired,
-  origin: string.isRequired,
+  origin: string,
   service: string.isRequired,
+};
+
+ToggleContextProvider.defaultProps = {
+  origin: 'https://www.bbc.com',
 };
 
 export { ToggleContext, ToggleContextProvider, ToggleContextConsumer };
