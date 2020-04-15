@@ -5,23 +5,21 @@ import { GridItemConstrainedMedium } from '#lib/styledGrid';
 import useToggle from '#hooks/useToggle';
 
 const IncludeContainer = ({ html = '', type }) => {
+  const scriptTagRegExp = new RegExp(/<script\b[^>]*>([\s\S]*?)<\/script>/gm);
   const { enabled } = useToggle('include');
-  const [includeHtml, setIncludeHtml] = useState(html || '');
-  const [scriptTags, setScriptsTags] = useState([]);
-  const isInitialMount = useRef(true);
-
-  useEffect(() => {
-    if (isInitialMount.current) {
-      isInitialMount.current = false;
-    } else {
-      setIncludeHtml(html || '');
-    }
-  }, [html]);
+  const inspectHtml = html || '';
+  const [includeHtml] = useState(inspectHtml.replace(scriptTagRegExp, ''));
+  const scriptTagMatches = inspectHtml.matchAll(scriptTagRegExp);
+  const [scriptTags] = useState(Array.from(scriptTagMatches));
 
   const supportedTypes = {
     idt2: 'idt2',
     vj: 'vj',
   };
+
+  console.log(
+    `enabled: ${enabled} html: ${!!html} type: ${type} includeHtml: ${!!includeHtml}`,
+  );
 
   const shouldNotRenderInclude = !enabled || !html || !supportedTypes[type];
 
@@ -48,18 +46,6 @@ const IncludeContainer = ({ html = '', type }) => {
     });
   };
 
-  useEffect(() => {
-    if (!isInitialMount.current) {
-      const scriptTagRegExp = new RegExp(
-        /<script\b[^>]*>([\s\S]*?)<\/script>/gm,
-      );
-      const scriptTagMatches = includeHtml.matchAll(scriptTagRegExp);
-
-      setScriptsTags(Array.from(scriptTagMatches));
-      setIncludeHtml(includeHtml.replace(scriptTagRegExp, ''));
-    }
-  }, [includeHtml]);
-
   // Keep the DOM up to date with our script tags.
   useEffect(() => {
     async function placeScriptsOneAfterTheOther() {
@@ -78,10 +64,10 @@ const IncludeContainer = ({ html = '', type }) => {
         }
       }
     }
-    if (!isInitialMount.current) {
-      placeScriptsOneAfterTheOther();
-    }
+    placeScriptsOneAfterTheOther();
   }, [scriptTags]);
+
+  console.log(shouldNotRenderInclude);
 
   if (shouldNotRenderInclude) {
     return null;

@@ -80,4 +80,5 @@ storiesOf('Containers|Include', module)
         <Include html={html} type="idt2" />
       </ToggleContextProvider>
     );
-  });
+  })
+  .add('new', () => {});
