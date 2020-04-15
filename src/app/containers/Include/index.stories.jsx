@@ -5,6 +5,7 @@ import { storiesOf } from '@storybook/react';
 import fetch from 'isomorphic-fetch';
 import Include from '.';
 import { ToggleContextProvider } from '#contexts/ToggleContext';
+import { fixture } from './include-fixture';
 
 const defaultToggles = {
   include: {
@@ -81,4 +82,14 @@ storiesOf('Containers|Include', module)
       </ToggleContextProvider>
     );
   })
-  .add('new', () => {});
+  .add('new', () => {
+    return (
+      <ToggleContextProvider
+        value={{ toggleState: defaultToggles }}
+        service="mundo"
+        origin="https://www.test.bbc.com"
+      >
+        <Include html={fixture.value} type="idt2" />
+      </ToggleContextProvider>
+    );
+  });
