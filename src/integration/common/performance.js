@@ -3,8 +3,14 @@ export default ({ hasScriptFonts = false } = {}) => {
     describe(`And using ${page.platform}`, () => {
       it('Resource hints tell the browser to load some things in advance', () => {
         const resources = [
-          'http://localhost:7080',
+          'https://www.bbc.com',
           'https://ichef.bbci.co.uk',
+          'https://cookie-oven.api.bbc.com',
+          'https://cookie-oven.api.bbc.co.uk',
+          'https://a1.api.bbc.co.uk',
+          'https://static.chartbeat.com',
+          'https://ping.chartbeat.net',
+
           ...(hasScriptFonts
             ? [
                 'https://gel.files.bbci.co.uk',

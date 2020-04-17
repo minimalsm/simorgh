@@ -122,6 +122,13 @@ exports[`Given I am on the Korean Live Radio page When I view the source code in
           type="image/x-icon"
     >
     <link rel="preconnect"
+          href="https://www.bbc.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://www.bbc.com"
+    >
+    <link rel="preconnect"
           href="https://ichef.bbci.co.uk"
           crossorigin="anonymous"
     >
@@ -129,18 +136,46 @@ exports[`Given I am on the Korean Live Radio page When I view the source code in
           href="https://ichef.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
+    >
+    <link rel="preconnect"
+          href="https://cookie-oven.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://cookie-oven.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://a1.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://a1.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://static.chartbeat.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://static.chartbeat.com"
+    >
+    <link rel="preconnect"
+          href="https://ping.chartbeat.net"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://ping.chartbeat.net"
     >
     <title data-react-helmet="true">
       BBC 코리아 라디오 - BBC News 코리아
@@ -911,6 +946,13 @@ exports[`Given I am on the Korean Live Radio page When I view the source code in
           type="image/x-icon"
     >
     <link rel="preconnect"
+          href="https://www.bbc.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://www.bbc.com"
+    >
+    <link rel="preconnect"
           href="https://ichef.bbci.co.uk"
           crossorigin="anonymous"
     >
@@ -918,18 +960,46 @@ exports[`Given I am on the Korean Live Radio page When I view the source code in
           href="https://ichef.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
+    >
+    <link rel="preconnect"
+          href="https://cookie-oven.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://cookie-oven.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://a1.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://a1.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://static.chartbeat.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://static.chartbeat.com"
+    >
+    <link rel="preconnect"
+          href="https://ping.chartbeat.net"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://ping.chartbeat.net"
     >
     <title data-react-helmet="true">
       BBC 코리아 라디오 - BBC News 코리아

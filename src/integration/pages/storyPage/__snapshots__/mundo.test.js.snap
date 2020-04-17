@@ -158,6 +158,13 @@ exports[`Given I am on a Mundo story AMP/Canonical page When I view the source c
           type="image/x-icon"
     >
     <link rel="preconnect"
+          href="https://www.bbc.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://www.bbc.com"
+    >
+    <link rel="preconnect"
           href="https://ichef.bbci.co.uk"
           crossorigin="anonymous"
     >
@@ -165,18 +172,46 @@ exports[`Given I am on a Mundo story AMP/Canonical page When I view the source c
           href="https://ichef.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
+    >
+    <link rel="preconnect"
+          href="https://cookie-oven.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://cookie-oven.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://a1.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://a1.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://static.chartbeat.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://static.chartbeat.com"
+    >
+    <link rel="preconnect"
+          href="https://ping.chartbeat.net"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://ping.chartbeat.net"
     >
     <link rel="preconnect"
           href="https://gel.files.bbci.co.uk"
@@ -2417,6 +2452,13 @@ exports[`Given I am on a Mundo story AMP/Canonical page When I view the source c
           type="image/x-icon"
     >
     <link rel="preconnect"
+          href="https://www.bbc.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://www.bbc.com"
+    >
+    <link rel="preconnect"
           href="https://ichef.bbci.co.uk"
           crossorigin="anonymous"
     >
@@ -2424,18 +2466,46 @@ exports[`Given I am on a Mundo story AMP/Canonical page When I view the source c
           href="https://ichef.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="http://localhost:7080"
+          href="https://news.files.bbci.co.uk"
     >
     <link rel="preconnect"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
           crossorigin="anonymous"
     >
     <link rel="dns-prefetch"
-          href="https://logws1363.ati-host.net?"
+          href="https://cookie-oven.api.bbc.com"
+    >
+    <link rel="preconnect"
+          href="https://cookie-oven.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://cookie-oven.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://a1.api.bbc.co.uk"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://a1.api.bbc.co.uk"
+    >
+    <link rel="preconnect"
+          href="https://static.chartbeat.com"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://static.chartbeat.com"
+    >
+    <link rel="preconnect"
+          href="https://ping.chartbeat.net"
+          crossorigin="anonymous"
+    >
+    <link rel="dns-prefetch"
+          href="https://ping.chartbeat.net"
     >
     <link rel="preconnect"
           href="https://gel.files.bbci.co.uk"
