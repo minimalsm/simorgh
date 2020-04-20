@@ -1,13 +1,99 @@
 /* eslint-disable react/no-danger */
-import React, { useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import { GridItemConstrainedMedium } from '#lib/styledGrid';
 import useToggle from '#hooks/useToggle';
 import {
   createAppendScriptByCode,
   createAppendScriptBySrc,
 } from './createAppendScript';
+
+const StyledIframe = styled.iframe`
+  border: 0;
+`;
+
+const IframeComponent = ({ html }) => {
+  const [url, setUrl] = useState('');
+
+  const [height, setHeight] = useState('100%');
+
+  const commScript = `
+  <script>
+    var observer = new MutationObserver(function(mutations) {
+      console.log({
+        offsetHeight: document.body.offsetHeight,
+        clientHeight: document.body.clientHeight,
+        scrollHeight: document.body.scrollHeight,
+        elemOffsetHeight: document.querySelector('body > div').offsetHeight,
+        elemClientHeight: document.querySelector('body > div').clientHeight,
+        elemScrollHeight: document.querySelector('body > div').scrollHeight,
+      })
+      parent.postMessage({ type: 'height', height: document.querySelector('body > div').offsetHeight + 70 }, 'http://localhost:7080');
+    });
+    observer.observe(document.querySelector('body > div'), {
+      childList: true, 
+      attributes: true,
+      attributeOldValue: true
+    });
+  </script>
+  `;
+
+  const postMessageListener = function (e) {
+    if (e.origin !== 'http://localhost:7080') return;
+
+    if (e.data.type !== 'height') return;
+
+    if (e.data.height !== height) {
+      setHeight(e.data.height);
+    }
+  };
+
+  useEffect(() => {
+    const eventMethod = window.addEventListener
+      ? 'addEventListener'
+      : 'attachEvent';
+    const eventer = window[eventMethod];
+    const messageEvent =
+      eventMethod === 'attachEvent' ? 'onmessage' : 'message';
+
+    eventer(messageEvent, postMessageListener);
+
+    return function () {
+      const removeEventMethod = window.removeEventListener
+        ? 'removeEventListener'
+        : 'detachEvent';
+
+      window[removeEventMethod](messageEvent, postMessageListener);
+    };
+  });
+
+  useEffect(() => {
+    const blob = new Blob([html + commScript], {
+      type: 'text/html',
+    });
+    const blobUrl = URL.createObjectURL(blob);
+    setUrl(blobUrl);
+  }, [html, commScript]);
+
+  return (
+    <StyledIframe
+      height={height}
+      width="100%"
+      title="iframe-component"
+      src={url}
+    />
+  );
+};
+
+IframeComponent.propTypes = {
+  html: string,
+};
+
+IframeComponent.defaultProps = {
+  html: '',
+};
 
 const IncludeContainer = ({ html = '', type }) => {
   const scriptTagRegExp = new RegExp(/<script\b[^>]*>([\s\S]*?)<\/script>/gm);
@@ -54,6 +140,8 @@ const IncludeContainer = ({ html = '', type }) => {
     return null;
   }
 
+  const isClient = typeof window !== 'undefined';
+
   return (
     <GridItemConstrainedMedium>
       <Link to="/pidgin/world-23252817">Pidgin STY</Link>
@@ -64,12 +152,16 @@ const IncludeContainer = ({ html = '', type }) => {
         <Link to="/pidgin/tori-51745682">Pidgin Tori STY</Link>
       </div>
 
-      <div
-        suppressHydrationWarning
-        dangerouslySetInnerHTML={{
-          __html: (html || '').replace(scriptTagRegExp, ''),
-        }}
-      />
+      {type === 'vj' && isClient ? (
+        <IframeComponent html={html || ''} />
+      ) : (
+        <div
+          suppressHydrationWarning
+          dangerouslySetInnerHTML={{
+            __html: (html || '').replace(scriptTagRegExp, ''),
+          }}
+        />
+      )}
     </GridItemConstrainedMedium>
   );
 };
