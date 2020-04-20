@@ -60,6 +60,9 @@ const IncludeContainer = ({ html = '', type }) => {
       <div>
         <Link to="/mundo/23263889">Mundo STY</Link>
       </div>
+      <div>
+        <Link to="/pidgin/tori-51745682">Pidgin Tori STY</Link>
+      </div>
 
       <div
         suppressHydrationWarning

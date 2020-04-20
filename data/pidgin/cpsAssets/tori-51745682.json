@@ -71,6 +71,13 @@
         "type": "list"
       },
       {
+        "required": false,
+        "tile": "Include from VisJo",
+        "href": "/include/vjeastasia/222-agni_timeline/indonesia/app?responsive=true&newsapps=true&app-clickable=true&amp-clickable=true&amp-image-height=360&amp-image-width=640&amp-image=https://news.files.bbci.co.uk/include/vjeastasia/222-agni_timeline/assets/app-project-assets/img/Agni_sexual_assault_timeline_1.png",
+        "platform": "highweb",
+        "type": "include"
+      },
+      {
         "markupType": "plain_text",
         "text": "Meanwhile di Acting National Secretary of di APC, Victor Giadom, bin tell BBC Pidgin say di party accept di earlier court decision to suspend Adams Oshiomhole as di party national chairman.",
         "type": "paragraph"
