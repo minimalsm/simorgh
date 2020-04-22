@@ -48,16 +48,6 @@ const IncludeContainer = ({ html = '', type }) => {
     if (isInitialMount.current) {
       placeScriptsOneAfterTheOther();
     }
-
-    return () => {
-      for (const key in window.require.s.contexts) {
-        if (key !== '_') {
-          delete window.require.s.contexts[key];
-        }
-      }
-
-      window.require.s.contexts._.defined = {};
-    };
   }, [html, type, scriptTagRegExp]);
 
   if (shouldNotRenderInclude) {
