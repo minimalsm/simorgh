@@ -209,7 +209,7 @@
       {
         "required": false,
         "tile": "Include from VisJo",
-        "href": "/include/newsspec/22766-democrats/mundo/app?responsive=true&newsapps=true&app-image=https://news.files.bbci.co.uk/vj/live/idt-images/image-slider-test/app_launcher2_640-mundo_aldmj.png&app-clickable=true&amp-clickable=true&amp-image-height=360&amp-image-width=640&amp-image=https://news.files.bbci.co.uk/vj/live/idt-images/image-slider-test/app_launcher2_640-mundo_aldmj.png",
+        "href": "/include/vjafwest/460-afcon-2019-dream-team/afrique/app?responsive=true&newsapps=true&app-clickable=true&amp-clickable=true&amp-image-height=360&amp-image-width=640&amp-image=https://news.files.bbci.co.uk/vj/live/idt-images/image-slider-images%20amp/DT_promo_640_pbbw2.png",
         "platform": "highweb",
         "type": "include"
       },
