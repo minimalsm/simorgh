@@ -55,8 +55,6 @@ const IncludeContainer = ({ html = '', type }) => {
           delete window.require.s.contexts[key];
         }
       }
-
-      window.require.s.contexts._.defined = {};
     };
   }, [html, type, scriptTagRegExp]);
 
