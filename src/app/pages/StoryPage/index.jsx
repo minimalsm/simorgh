@@ -36,7 +36,6 @@ import {
 import categoryType from './categoryMap/index';
 import Include from '#containers/Include';
 import { ServiceContext } from '#contexts/ServiceContext';
-import { useEffect } from 'react';
 
 const StoryPage = ({ pageData, mostReadEndpointOverride }) => {
   const { dir } = useContext(ServiceContext);
@@ -169,21 +168,6 @@ const StoryPage = ({ pageData, mostReadEndpointOverride }) => {
     group4: 4,
     group5: 3,
   };
-
-  useEffect(() => {
-    return () => {
-      console.log('Cleanup!');
-      //window.require.s.contexts = { _: window.require.s.contexts._ };
-      //const allKeys = Object.keys(window.require.s.contexts);
-      for (const key in window.require.s.contexts) {
-        if (key !== '_') {
-          delete window.require.s.contexts[key];
-        }
-      }
-
-      window.require.s.contexts._.defined = {};
-    };
-  });
 
   return (
     <>
