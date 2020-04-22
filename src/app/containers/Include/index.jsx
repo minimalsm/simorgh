@@ -4,6 +4,10 @@ import { string } from 'prop-types';
 import { Link } from 'react-router-dom';
 import { GridItemConstrainedMedium } from '#lib/styledGrid';
 import useToggle from '#hooks/useToggle';
+import {
+  createAppendScriptByCode,
+  createAppendScriptBySrc,
+} from './createAppendScript';
 
 const IncludeContainer = ({ html = '', type }) => {
   const scriptTagRegExp = new RegExp(/<script\b[^>]*>([\s\S]*?)<\/script>/gm);
@@ -16,29 +20,6 @@ const IncludeContainer = ({ html = '', type }) => {
   };
 
   const shouldNotRenderInclude = !enabled || !html || !supportedTypes[type];
-
-  const createAppendScriptTag = (code, src) => {
-    return new Promise((resolve, reject) => {
-      const script = document.createElement('script');
-      if (src) {
-        script.src = src;
-        // eslint-disable-next-line func-names
-        script.onload = function () {
-          resolve();
-        };
-      } else if (code) {
-        script.appendChild(document.createTextNode(code));
-      }
-      // eslint-disable-next-line func-names
-      script.onerror = function () {
-        reject();
-      };
-      document.body.append(script);
-      if (code) {
-        resolve();
-      }
-    });
-  };
 
   // Keep the DOM up to date with our script tags.
   useEffect(() => {
@@ -54,11 +35,13 @@ const IncludeContainer = ({ html = '', type }) => {
         const [srcContent] = Array.from(textContent.matchAll(srcRegex));
         if (srcContent) {
           const [src] = srcContent.slice(-1);
+          if (src) {
+            // eslint-disable-next-line no-await-in-loop
+            await createAppendScriptBySrc(src);
+          }
+        } else if (contents) {
           // eslint-disable-next-line no-await-in-loop
-          await createAppendScriptTag('', src);
-        } else {
-          // eslint-disable-next-line no-await-in-loop
-          await createAppendScriptTag(contents);
+          await createAppendScriptByCode(contents);
         }
       }
     }
@@ -86,6 +69,9 @@ const IncludeContainer = ({ html = '', type }) => {
       <Link to="/pidgin/world-23252817">Pidgin STY</Link>
       <div>
         <Link to="/mundo/23263889">Mundo STY</Link>
+      </div>
+      <div>
+        <Link to="/pidgin/tori-51745682">Pidgin Tori STY</Link>
       </div>
 
       <div
