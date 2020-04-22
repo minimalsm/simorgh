@@ -185,8 +185,6 @@ const StoryPage = ({ pageData, mostReadEndpointOverride }) => {
           delete window.require.s.contexts[key];
         }
       }
-
-      window.require.s.contexts._.defined = {};
     };
   });
 
