@@ -77,16 +77,26 @@ describe('processUnavailableMedia', () => {
     const pageData = {
       metadata: {
         blockTypes: ['paragraph', 'heading'],
-        locators: { assetUri: 'mock-uri' },
+        locators: {
+          assetUri: 'mock-uri',
+        },
       },
-      content: { model: { blocks: [] } },
+      content: {
+        model: { blocks: [] },
+      },
     };
     const expectedPageData = {
       metadata: {
         blockTypes: ['paragraph', 'heading'],
-        locators: { assetUri: 'mock-uri' },
+        locators: {
+          assetUri: 'mock-uri',
+        },
       },
-      content: { model: { blocks: [unavailableMediaBlock] } },
+      content: {
+        model: {
+          blocks: [unavailableMediaBlock],
+        },
+      },
     };
     const receivedPageData = processUnavailableMedia(pageData);
     expect(receivedPageData).toEqual(expectedPageData);
@@ -98,13 +108,19 @@ describe('processUnavailableMedia', () => {
       metadata: {
         blockTypes: [EXTERNAL_VPID, 'paragraph', 'heading'],
       },
-      content: { model: { blocks: [] } },
+      content: {
+        model: { blocks: [] },
+      },
     };
     const expectedPageData = {
       metadata: {
         blockTypes: [EXTERNAL_VPID, 'paragraph', 'heading'],
       },
-      content: { model: { blocks: [unavailableMediaBlock] } },
+      content: {
+        model: {
+          blocks: [unavailableMediaBlock],
+        },
+      },
     };
     const receivedPageData = processUnavailableMedia(pageData);
     expect(receivedPageData).toEqual(expectedPageData);
@@ -115,7 +131,9 @@ describe('processUnavailableMedia', () => {
       metadata: {
         blockTypes: ['media', 'paragraph', 'heading'],
       },
-      content: { model: { blocks: [] } },
+      content: {
+        model: { blocks: [] },
+      },
     };
     const receivedPageData = processUnavailableMedia(pageData);
     expect(receivedPageData).toEqual(pageData);
@@ -125,10 +143,19 @@ describe('processUnavailableMedia', () => {
     const pageData = {
       metadata: {
         blockTypes: [EXTERNAL_VPID, 'paragraph', 'heading'],
-        locators: { assetUri: 'mock-uri' },
+        locators: {
+          assetUri: 'mock-uri',
+        },
       },
       content: {
-        model: { blocks: [{ statusCode: 404, type: EXTERNAL_VPID }] },
+        model: {
+          blocks: [
+            {
+              statusCode: 404,
+              type: EXTERNAL_VPID,
+            },
+          ],
+        },
       },
     };
     processUnavailableMedia(pageData);
@@ -142,10 +169,19 @@ describe('processUnavailableMedia', () => {
     const pageData = {
       metadata: {
         blockTypes: [EXTERNAL_VPID, 'paragraph', 'heading'],
-        locators: { assetUri: 'mock-uri' },
+        locators: {
+          assetUri: 'mock-uri',
+        },
       },
       content: {
-        model: { blocks: [{ statusCode: 410, type: EXTERNAL_VPID }] },
+        model: {
+          blocks: [
+            {
+              statusCode: 410,
+              type: EXTERNAL_VPID,
+            },
+          ],
+        },
       },
     };
     processUnavailableMedia(pageData);
@@ -159,10 +195,85 @@ describe('processUnavailableMedia', () => {
     const pageData = {
       metadata: {
         blockTypes: [EXTERNAL_VPID, 'paragraph', 'heading'],
-        locators: { assetUri: 'mock-uri' },
+        locators: {
+          assetUri: 'mock-uri',
+        },
       },
       content: {
-        model: { blocks: [{ type: EXTERNAL_VPID }] },
+        model: {
+          blocks: [{ type: EXTERNAL_VPID }],
+        },
+      },
+    };
+    processUnavailableMedia(pageData);
+    expect(loggerMock.error).toHaveBeenCalledWith(
+      MEDIA_METADATA_UNAVAILABLE,
+      mockUrlObject,
+    );
+  });
+
+  // Scenario in /persian/tv-and-radio-40179373
+  xit('logs the correct message when there are no content blocks', async () => {
+    const pageData = {
+      metadata: {
+        blockTypes: [],
+        locators: {
+          assetUri: 'mock-uri',
+        },
+      },
+      content: { blocks: [] },
+    };
+    processUnavailableMedia(pageData);
+    expect(loggerMock.error).toHaveBeenCalledWith(
+      NO_MEDIA_BLOCK,
+      mockUrlObject,
+    );
+  });
+
+  // /mundo/media-42966187
+  xit('logs the correct message when there are no media blocks', async () => {
+    const pageData = {
+      metadata: {
+        blockTypes: ['paragraph', 'list', 'image'],
+        locators: {
+          assetUri: 'mock-uri',
+        },
+      },
+      content: {
+        blocks: [
+          {
+            type: 'paragraph',
+          },
+          {
+            type: 'list',
+          },
+          {
+            type: 'image',
+          },
+        ],
+      },
+    };
+    processUnavailableMedia(pageData);
+    expect(loggerMock.error).toHaveBeenCalledWith(
+      NO_MEDIA_BLOCK,
+      mockUrlObject,
+    );
+  });
+  // /japanese/video-35397628
+  it('logs the correct message when there is a version block', async () => {
+    const pageData = {
+      metadata: {
+        blockTypes: ['version'],
+        locators: {
+          assetUri: 'mock-uri',
+        },
+      },
+      content: {
+        blocks: [
+          {
+            type: 'version',
+          },
+        ],
       },
     };
     processUnavailableMedia(pageData);

@@ -19,27 +19,29 @@ export const unavailableMediaBlock = {
   id: UNAVAILABLE_MEDIA_TEXT,
 };
 
-export const logUnavailableMedia = (blocks, url) => {
-  const mediaBlock = blocks.find(block => block.type === EXTERNAL_VPID);
-  if (mediaBlock) {
-    const { statusCode } = mediaBlock;
-    switch (statusCode) {
-      case 404:
-        logger.warn(MEDIA_ASSET_REVOKED, { url });
-        break;
-      case 410:
-        logger.warn(MEDIA_ASSET_EXPIRED, { url });
-        break;
-      default:
-        logger.error(MEDIA_METADATA_UNAVAILABLE, { url });
-    }
+export const logUnavailableMedia = ({ block, url }) => {
+  const { statusCode } = block;
+  switch (statusCode) {
+    case 404:
+      logger.warn(MEDIA_ASSET_REVOKED, { url });
+      break;
+    case 410:
+      logger.warn(MEDIA_ASSET_EXPIRED, { url });
+      break;
+    default:
+      logger.error(MEDIA_METADATA_UNAVAILABLE, { url });
   }
 };
 
 export const addUnavailableMediaBlock = pageData => {
   const blocks = pathOr([], ['content', 'model', 'blocks'], pageData);
   const url = path(['metadata', 'locators', 'assetUri'], pageData);
-  logUnavailableMedia(blocks, url);
+  const mediaBlocktypeExternalVpid = blocks.find(
+    block => block.type === EXTERNAL_VPID,
+  );
+  if (mediaBlocktypeExternalVpid) {
+    logUnavailableMedia({ block: mediaBlocktypeExternalVpid, url });
+  }
   const filteredBlocks = blocks.filter(block => block.type !== EXTERNAL_VPID);
   return assocPath(
     ['content', 'model', 'blocks'],
@@ -48,21 +50,29 @@ export const addUnavailableMediaBlock = pageData => {
   );
 };
 
-const logIfNoMedia = (blockTypes, pageData) => {
-  if (!blockTypes.includes(EXTERNAL_VPID)) {
-    logger.warn(NO_MEDIA_BLOCK, {
-      url: path(['metadata', 'locators', 'assetUri'], pageData),
-    });
-  }
+const logNoMedia = ({ pageData }) => {
+  logger.warn(NO_MEDIA_BLOCK, {
+    url: path(['metadata', 'locators', 'assetUri'], pageData),
+  });
 };
 
 const transformer = pageData => {
+  const BLOCKTYPES_WITH_PLAYABLE_MEDIA = ['media', 'legacyMedia', 'version'];
+
   const blockTypes = pathOr([], ['metadata', 'blockTypes'], pageData);
   const hasPlayableMedia = blockTypes.some(blockType =>
-    ['media', 'legacyMedia', 'version'].includes(blockType),
+    BLOCKTYPES_WITH_PLAYABLE_MEDIA.includes(blockType),
   );
   if (!hasPlayableMedia) {
-    logIfNoMedia(blockTypes, pageData);
+    // Is checking for EXTERNAL_VPID needed?
+    // Here there are no blocks of types 'media', 'legacyMedia', 'version
+    if (!blockTypes.includes(EXTERNAL_VPID)) {
+      logNoMedia({ pageData });
+    }
+    // If there is no block of type 'media', 'legacyMedia', 'version',
+    // why are we adding an 'unavailable_media' block to the pageData?
+
+    // addUnavailableMediaBlock below is also logging via logUnavailableMedia
     return addUnavailableMediaBlock(pageData);
   }
   return pageData;
