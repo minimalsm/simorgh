@@ -73,7 +73,7 @@ describe('processUnavailableMedia', () => {
     expect(receivedPageData).toEqual(expectedProcessedData);
   });
 
-  it('runs addUnavailableMediaBlock when there is no media block', () => {
+  it('runs addUnavailableMediaBlock& logs NO_MEDIA_BLOCK when there is no media block', () => {
     const pageData = {
       metadata: {
         blockTypes: ['paragraph', 'heading'],
@@ -101,6 +101,38 @@ describe('processUnavailableMedia', () => {
     const receivedPageData = processUnavailableMedia(pageData);
     expect(receivedPageData).toEqual(expectedPageData);
     expect(loggerMock.warn).toHaveBeenCalledWith(NO_MEDIA_BLOCK, mockUrlObject);
+    expect(loggerMock.warn).toHaveBeenCalledTimes(1);
+    // expect(loggerMock.error).toHaveBeenCalledTimes(0);
+  });
+  // Scenario in /persian/tv-and-radio-40179373
+  it('runs addUnavailableMediaBlock & logs NO_MEDIA_BLOCK when there are no content blocks', async () => {
+    const pageData = {
+      metadata: {
+        blockTypes: [],
+        locators: {
+          assetUri: 'mock-uri',
+        },
+      },
+      content: { blocks: [] },
+    };
+    const expectedPageData = {
+      metadata: {
+        blockTypes: [],
+        locators: {
+          assetUri: 'mock-uri',
+        },
+      },
+      content: { blocks: [], model: { blocks: [unavailableMediaBlock] } },
+    };
+    const receivedPageData = processUnavailableMedia(pageData);
+    expect(receivedPageData).toEqual(expectedPageData);
+    expect(loggerMock.warn).toHaveBeenCalledWith(NO_MEDIA_BLOCK, mockUrlObject);
+    // expect(loggerMock.warn).toHaveBeenCalledTimes(1);
+    // expect(loggerMock.error).toHaveBeenCalledTimes(0);
+    expect(loggerMock.error).toHaveBeenCalledWith(
+      MEDIA_METADATA_UNAVAILABLE,
+      mockUrlObject,
+    );
   });
 
   it('runs addUnavailableMediaBlock when there is an external_vpid in the content blocks', () => {
@@ -212,29 +244,11 @@ describe('processUnavailableMedia', () => {
     );
   });
 
-  // Scenario in /persian/tv-and-radio-40179373
-  xit('logs the correct message when there are no content blocks', async () => {
-    const pageData = {
-      metadata: {
-        blockTypes: [],
-        locators: {
-          assetUri: 'mock-uri',
-        },
-      },
-      content: { blocks: [] },
-    };
-    processUnavailableMedia(pageData);
-    expect(loggerMock.error).toHaveBeenCalledWith(
-      NO_MEDIA_BLOCK,
-      mockUrlObject,
-    );
-  });
-
   // /mundo/media-42966187
   xit('logs the correct message when there are no media blocks', async () => {
     const pageData = {
       metadata: {
-        blockTypes: ['paragraph', 'list', 'image'],
+        blockTypes: ['paragraph'],
         locators: {
           assetUri: 'mock-uri',
         },
@@ -244,12 +258,6 @@ describe('processUnavailableMedia', () => {
           {
             type: 'paragraph',
           },
-          {
-            type: 'list',
-          },
-          {
-            type: 'image',
-          },
         ],
       },
     };
@@ -258,9 +266,10 @@ describe('processUnavailableMedia', () => {
       NO_MEDIA_BLOCK,
       mockUrlObject,
     );
+    expect(loggerMock.error).toHaveBeenCalledTimes(1);
   });
   // /japanese/video-35397628
-  it('logs the correct message when there is a version block', async () => {
+  xit('logs the correct message when there is a version block', async () => {
     const pageData = {
       metadata: {
         blockTypes: ['version'],
@@ -281,5 +290,30 @@ describe('processUnavailableMedia', () => {
       MEDIA_METADATA_UNAVAILABLE,
       mockUrlObject,
     );
+    expect(loggerMock.error).toHaveBeenCalledTimes(1);
+  });
+
+  xit('logs the correct message when there is external_vpid block and no playable media block', async () => {
+    const pageData = {
+      metadata: {
+        blockTypes: ['external_vpid'],
+        locators: {
+          assetUri: 'mock-uri',
+        },
+      },
+      content: {
+        blocks: [
+          {
+            type: 'external_vpid',
+          },
+        ],
+      },
+    };
+    processUnavailableMedia(pageData);
+    expect(loggerMock.error).toHaveBeenCalledWith(
+      MEDIA_METADATA_UNAVAILABLE,
+      mockUrlObject,
+    );
+    expect(loggerMock.error).toHaveBeenCalledTimes(1);
   });
 });

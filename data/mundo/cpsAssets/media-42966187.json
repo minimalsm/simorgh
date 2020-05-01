@@ -1,0 +1,219 @@
+{
+  "content": {
+    "blocks": [
+      {
+        "markupType": "plain_text",
+        "role": "introduction",
+        "text": "El gigantesco cohete Falcon Heavy, de la empresa privada SpaceX, despegó este martes a partir de las 15:45 ET (20:45 GMT) desde el Centro Espacial John F. Kennedy de la NASA en Cabo Cañaveral, Florida.",
+        "type": "paragraph"
+      },
+      {
+        "markupType": "plain_text",
+        "text": "La nave, que fue lanzada desde la misma plataforma que llevó los hombres a la Luna, llevará en su depósito un auto Tesla, el primer automóvil que será colocado en una órbita en el espacio.",
+        "type": "paragraph"
+      },
+      {
+        "markupType": "plain_text",
+        "text": "Se espera que una gran multitud acuda a Cabo Cañaveral a ver el despegue.",
+        "type": "paragraph"
+      },
+      {
+        "markupType": "plain_text",
+        "text": "Síguelo en directo a través de BBC Mundo (transmisión en inglés).",
+        "type": "paragraph"
+      },
+      {
+        "items": [
+          {
+            "markupType": "candy_xml",
+            "text": "<link><caption>Cómo es el Falcon Heavy de SpaceX, el cohete más potente del mundo, y por qué importa su lanzamiento este martes</caption><url href=\"http://www.bbc.com/mundo/noticias-42961598\" platform=\"highweb\"/></link>",
+            "type": "listItem"
+          }
+        ],
+        "numbered": false,
+        "type": "list"
+      },
+      {
+        "altText": "Rayita",
+        "copyrightHolder": "BBC",
+        "height": 2,
+        "href": "http://c.files.bbci.co.uk/13CED/production/_99833118_raya.jpg",
+        "id": "99833118",
+        "path": "/cpsprodpb/13CED/production/_99833118_raya.jpg",
+        "positionHint": "body-width",
+        "subType": "body",
+        "type": "image",
+        "width": 464
+      },
+      {
+        "markupType": "candy_xml",
+        "text": "<italic>Ahora puedes recibir notificaciones de BBC Mundo. Descarga la nueva versión de nuestra app y actívalas para no perderte nuestro mejor contenido.</italic>",
+        "type": "paragraph"
+      }
+    ]
+  },
+  "metadata": {
+    "analyticsLabels": {
+      "counterName": "mundo.media.media_asset.42966187.page",
+      "cps_asset_id": "42966187",
+      "cps_asset_type": "map"
+    },
+    "blockTypes": ["paragraph", "list", "image"],
+    "createdBy": "mundo-v6",
+    "firstPublished": 1517949109,
+    "id": "urn:bbc:ares::asset:mundo/media-42966187",
+    "includeComments": false,
+    "language": "es",
+    "lastPublished": 1517974515,
+    "lastUpdated": 1548866621764,
+    "locators": {
+      "assetUri": "/mundo/media-42966187",
+      "cpsUrn": "urn:bbc:content:assetUri:mundo/media-42966187",
+      "curie": "http://www.bbc.co.uk/asset/0c68bd4c-422b-a146-a541-d189a65afb3d"
+    },
+    "options": {
+      "allowAdvertising": true,
+      "allowDateStamp": true,
+      "allowHeadline": true,
+      "allowPrintingSharingLinks": true,
+      "allowRelatedStoriesBox": true,
+      "allowRightHandSide": true,
+      "hasContentWarning": false,
+      "hasNewsTracker": false,
+      "includeComments": false,
+      "isBreakingNews": false,
+      "isFactCheck": false,
+      "isIgorSeoTagsEnabled": false,
+      "isKeyContent": false,
+      "suitableForSyndication": true
+    },
+    "passport": {
+      "category": {
+        "categoryId": "http://www.bbc.co.uk/ontologies/applicationlogic-news/News",
+        "categoryName": "News"
+      }
+    },
+    "tags": {
+      "about": [
+        {
+          "thingId": "0f469e6a-d4a6-46f2-b727-2bd039cb6b53",
+          "thingLabel": "Science",
+          "thingSameAs": [
+            "http://dbpedia.org/resource/Science",
+            "http://www.wikidata.org/entity/Q336"
+          ],
+          "thingType": ["Theme", "Thing"],
+          "thingUri": "http://www.bbc.co.uk/things/0f469e6a-d4a6-46f2-b727-2bd039cb6b53#id"
+        },
+        {
+          "thingId": "31684f19-84d6-41f6-b033-7ae08098572a",
+          "thingLabel": "Technology",
+          "thingSameAs": [
+            "http://dbpedia.org/resource/Technology",
+            "http://www.wikidata.org/entity/Q4456888"
+          ],
+          "thingType": ["Theme", "Thing"],
+          "thingUri": "http://www.bbc.co.uk/things/31684f19-84d6-41f6-b033-7ae08098572a#id"
+        },
+        {
+          "thingId": "82857f8e-8134-462a-bb32-b7b14f4eab75",
+          "thingLabel": "United States",
+          "thingSameAs": ["http://sws.geonames.org/6252001/"],
+          "thingType": ["nsl:Topic", "Place", "Thing", "geoname:GeoTagConcept"],
+          "thingUri": "http://www.bbc.co.uk/things/82857f8e-8134-462a-bb32-b7b14f4eab75#id"
+        },
+        {
+          "thingId": "84915d8d-467d-4c5e-88f7-bbb1bb5cf0dc",
+          "thingLabel": "Space exploration",
+          "thingSameAs": [
+            "http://dbpedia.org/resource/Space_exploration",
+            "http://www.wikidata.org/entity/Q180046"
+          ],
+          "thingType": ["Theme", "Thing"],
+          "thingUri": "http://www.bbc.co.uk/things/84915d8d-467d-4c5e-88f7-bbb1bb5cf0dc#id"
+        }
+      ]
+    },
+    "type": "MAP",
+    "version": "v0.4.14"
+  },
+  "promo": {
+    "headlines": {
+      "headline": "En vivo: sigue en directo el lanzamiento desde Cabo Cañaveral del cohete Falcon Heavy de SpaceX, el más potente del mundo",
+      "shortHeadline": "En vivo: sigue en directo el lanzamiento del cohete Falcon Heavy de SpaceX, el más potente del mundo"
+    },
+    "id": "urn:bbc:ares::asset:mundo/media-42966187",
+    "indexImage": {
+      "altText": "SpaceX",
+      "copyrightHolder": "Reuters",
+      "height": 432,
+      "href": "http://c.files.bbci.co.uk/1159/production/_99914440_mediaitem99914439.jpg",
+      "id": "99914440",
+      "path": "/cpsprodpb/1159/production/_99914440_mediaitem99914439.jpg",
+      "subType": "index",
+      "type": "image",
+      "width": 768
+    },
+    "locators": {
+      "assetUri": "/mundo/media-42966187",
+      "cpsUrn": "urn:bbc:content:assetUri:mundo/media-42966187",
+      "curie": "http://www.bbc.co.uk/asset/0c68bd4c-422b-a146-a541-d189a65afb3d"
+    },
+    "passport": {
+      "category": {
+        "categoryId": "http://www.bbc.co.uk/ontologies/applicationlogic-news/News",
+        "categoryName": "News"
+      }
+    },
+    "summary": "SpaceX lanza este martes el gigantesco cohete Falcon Heavy, desde el Centro Espacial John F. Kennedy de la NASA en Cabo Cañaveral.",
+    "timestamp": 1548866621764,
+    "type": "cps"
+  },
+  "relatedContent": {
+    "groups": [
+      {
+        "promos": [
+          {
+            "cpsType": "STY",
+            "headlines": {
+              "headline": "Cómo es el Falcon Heavy de SpaceX, el cohete más potente del mundo, y por qué es tan importante su lanzamiento desde Cabo Cañaveral",
+              "shortHeadline": "Cómo es el Falcon Heavy, el cohete más potente del mundo, y por qué es tan importante su lanzamiento"
+            },
+            "id": "urn:bbc:ares::asset:mundo/noticias-42961598",
+            "indexImage": {
+              "altText": "Cohete",
+              "copyrightHolder": "Getty Images",
+              "height": 432,
+              "href": "http://c.files.bbci.co.uk/8689/production/_99914443_mediaitem99914442.jpg",
+              "id": "99914443",
+              "path": "/cpsprodpb/8689/production/_99914443_mediaitem99914442.jpg",
+              "subType": "index",
+              "type": "image",
+              "width": 768
+            },
+            "locators": {
+              "assetUri": "/mundo/noticias-42961598",
+              "cpsUrn": "urn:bbc:content:assetUri:/mundo/noticias-42961598"
+            },
+            "summary": "El gigantesco cohete de la empresa SpaceX, del multimillonario Elon Musk, despegó de la misma plataforma usada por las misiones Apolo para ir a la Luna. El cohete que podría ser utilizado en futuras misiones a Marte, puso por primera vez en el espacio un automóvil.",
+            "timestamp": 1517974513,
+            "type": "cps"
+          }
+        ],
+        "type": "see-alsos"
+      }
+    ],
+    "section": {
+      "name": "Media",
+      "subType": "index",
+      "type": "simple",
+      "uri": "/mundo/media"
+    },
+    "site": {
+      "name": "BBC Mundo",
+      "subType": "site",
+      "type": "simple",
+      "uri": "/mundo"
+    }
+  }
+}

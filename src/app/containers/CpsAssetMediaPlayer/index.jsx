@@ -38,6 +38,7 @@ const Wrapper = styled(GridItemConstrainedLarge)`
 `;
 
 const CpsAssetMediaPlayer = ({ blocks, assetUri, isLegacyMedia }) => {
+  console.log('CPSMEDIAPLAYER');
   if (!assetUri) return null;
 
   const mediaBlock = filterForBlockType(blocks, 'aresMedia');

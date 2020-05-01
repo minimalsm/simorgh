@@ -58,7 +58,7 @@ const MediaAssetPage = ({ pageData }) => {
   const firstPublished = getFirstPublished(pageData);
   const lastPublished = getLastPublished(pageData);
   const aboutTags = getAboutTags(pageData);
-
+  console.log(isLegacyMediaAssetPage(requestContext.canonicalLink));
   const componentsToRender = {
     fauxHeadline,
     visuallyHiddenHeadline,
@@ -102,6 +102,7 @@ const MediaAssetPage = ({ pageData }) => {
     }
   `;
 
+  console.log('in page');
   return (
     <>
       <ChartbeatAnalytics data={pageData} />

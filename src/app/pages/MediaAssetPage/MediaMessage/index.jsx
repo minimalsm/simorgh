@@ -42,6 +42,7 @@ const Wrapper = styled(GridItemConstrainedLarge)`
 `;
 
 export default () => {
+  console.log('media message');
   const { translations, service } = useContext(ServiceContext);
   const translatedText = path(['media', 'contentExpired'], translations);
   const message = 'This content is no longer available';

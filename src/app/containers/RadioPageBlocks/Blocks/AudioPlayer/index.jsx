@@ -68,6 +68,7 @@ const AudioPlayer = ({
     ['media', 'noJs'],
     translations,
   );
+  console.log('isExpired', isExpired);
 
   if (isExpired) {
     const expiredContentMessage = pathOr(

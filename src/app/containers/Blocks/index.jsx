@@ -14,7 +14,7 @@ const Blocks = ({ blocks, componentsToRender }) =>
     if (!Block) {
       return null;
     }
-
+    console.log(type);
     const { type: typeOfPreviousBlock } = blocks[index - 1] || {};
     return (
       <Block

@@ -64,11 +64,8 @@ const transformer = pageData => {
     BLOCKTYPES_WITH_PLAYABLE_MEDIA.includes(blockType),
   );
   if (!hasPlayableMedia) {
-    // Is checking for EXTERNAL_VPID needed?
-    // Here there are no blocks of types 'media', 'legacyMedia', 'version
-    if (!blockTypes.includes(EXTERNAL_VPID)) {
-      logNoMedia({ pageData });
-    }
+    logNoMedia({ pageData });
+
     // If there is no block of type 'media', 'legacyMedia', 'version',
     // why are we adding an 'unavailable_media' block to the pageData?
 
