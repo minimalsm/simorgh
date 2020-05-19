@@ -11,7 +11,7 @@ phases:
       - npm run build
   build:
     commands:
-      - npm run cypress:ci -- --browser chrome
+      - npm run cypress:ci -- --browser firefox
 reports:
   JunitReportsTest:
     files:
