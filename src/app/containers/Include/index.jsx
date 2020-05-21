@@ -42,6 +42,10 @@ const IncludeContainer = ({ html, type }) => {
     <GridItemConstrainedMedium>
       {requireIncludeTypes.includes(type) && (
         <Helmet>
+          <meta
+            httpEquiv="Content-Security-Policy"
+            content="script-src 'unsafe-eval'"
+          />
           <script
             type="text/javascript"
             src="https://news.files.bbci.co.uk/include/vjassets/js/vendor/require-2.1.20b.min.js"
