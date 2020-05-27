@@ -13,7 +13,7 @@ export const App = ({ routes, location, initialData, bbcOrigin, history }) => {
     id,
     assetUri,
     errorCode,
-    route: { pageType },
+    route: { pageType, cmsType },
   } = getRouteProps(routes, location.pathname);
 
   const { pageData, status, error, timeOnServer } = initialData;
@@ -27,6 +27,7 @@ export const App = ({ routes, location, initialData, bbcOrigin, history }) => {
     assetUri,
     isAmp,
     pageType,
+    cmsType,
     error,
     loading: false,
     errorCode: errorCode || initialData.errorCode,
@@ -75,6 +76,7 @@ export const App = ({ routes, location, initialData, bbcOrigin, history }) => {
           assetUri: nextAssetUri,
           isAmp: nextIsAmp,
           pageType: route.pageType,
+          cmsType: route.cmsType,
           loading: true,
           error: null,
           errorCode: null,
@@ -87,6 +89,7 @@ export const App = ({ routes, location, initialData, bbcOrigin, history }) => {
           path: location.pathname,
           service: nextService,
           variant: nextVariant,
+          cmsType: route.cmsType,
         })
         .then(data => {
           clearTimeout(loaderTimeout);
@@ -98,6 +101,7 @@ export const App = ({ routes, location, initialData, bbcOrigin, history }) => {
             assetUri: nextAssetUri,
             isAmp: nextIsAmp,
             pageType: route.pageType,
+            cmsType: route.cmsType,
             loading: false,
             pageData: path(['pageData'], data),
             status: path(['status'], data),

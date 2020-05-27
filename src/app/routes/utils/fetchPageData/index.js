@@ -23,7 +23,7 @@ const baseUrl = onClient()
   ? getBaseUrl(window.location.origin)
   : process.env.SIMORGH_BASE_URL;
 
-export const getUrl = pathname => {
+export const getUrl = ({ pathname }) => {
   if (!pathname) return '';
 
   const params = isLive() ? '' : getQueryString(pathname);
@@ -32,7 +32,7 @@ export const getUrl = pathname => {
   return `${baseUrl}${basePath.replace(ampRegex, '')}.json${params}`; // Remove .amp at the end of pathnames for AMP pages.
 };
 
-const handleResponse = url => async response => {
+const handleResponse = ({ url, cmsType }) => async response => {
   const { status } = response;
 
   if (upstreamStatusCodesToPropagate.includes(status)) {
@@ -40,6 +40,7 @@ const handleResponse = url => async response => {
       logger.error(DATA_NOT_FOUND, {
         url,
         status,
+        cmsType,
       });
     }
 
@@ -56,10 +57,10 @@ const handleResponse = url => async response => {
   );
 };
 
-const handleError = e => {
+const handleError = ({ e, cmsType }) => {
   const error = e.toString();
 
-  logger.error(DATA_FETCH_ERROR, { error });
+  logger.error(DATA_FETCH_ERROR, { error, cmsType });
 
   return {
     error,
@@ -67,12 +68,14 @@ const handleError = e => {
   };
 };
 
-const fetchData = pathname => {
-  const url = getUrl(pathname);
+const fetchData = ({ path, cmsType }) => {
+  const url = getUrl(path);
 
-  logger.info(DATA_REQUEST_RECEIVED, { url });
+  logger.info(DATA_REQUEST_RECEIVED, { url, cmsType });
 
-  return fetch(url).then(handleResponse(url)).catch(handleError);
+  return fetch(url)
+    .then(handleResponse({ url, cmsType }))
+    .catch(e => handleError({ e, cmsType }));
 };
 
 export default fetchData;

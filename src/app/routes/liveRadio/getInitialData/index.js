@@ -15,9 +15,12 @@ const getPageIdentifier = path([
   'pageIdentifier',
 ]);
 
-export default async ({ path: pathname }) => {
+export default async ({ path: pathname, cmsType }) => {
   const liveRadioDataPath = overrideRendererOnTest(pathname);
-  const { json, ...rest } = await fetchPageData(liveRadioDataPath);
+  const { json, ...rest } = await fetchPageData({
+    path: liveRadioDataPath,
+    cmsType,
+  });
   const contentData = path(['content'], json);
   const pageType = { metadata: { type: 'Live Radio' } };
 

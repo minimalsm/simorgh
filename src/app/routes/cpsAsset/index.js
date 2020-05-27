@@ -33,10 +33,20 @@ const CpsAsset = props => {
     : ErrorPage({ ...props, pageType: 'error', errorCode: 404 });
 };
 
-export default {
-  path: [cpsAssetPagePath, legacyAssetPagePath],
+export const cpsAsset = {
+  path: cpsAssetPagePath,
   exact: true,
   component: memo(CpsAsset, pageIsSame),
   getInitialData,
   pageType: 'cpsAsset',
+  cmsType: 'cps',
+};
+
+export const legacyAsset = {
+  path: legacyAssetPagePath,
+  exact: true,
+  component: memo(CpsAsset, pageIsSame),
+  getInitialData,
+  pageType: 'cpsAsset',
+  cmsType: 'tc2',
 };

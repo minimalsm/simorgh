@@ -268,10 +268,11 @@ server
       });
 
       try {
-        const { service, isAmp, route, variant } = getRouteProps(
+        const { service, isAmp, route, variant, route } = getRouteProps(
           routes,
           urlPath,
         );
+        const { cmsType } = route;
         const data = await route.getInitialData({
           path: url,
           service,

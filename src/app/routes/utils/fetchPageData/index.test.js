@@ -25,19 +25,19 @@ describe('fetchPageData', () => {
     });
 
     it('should call fetch with correct url', async () => {
-      await fetchPageData(requestedPathname);
+      await fetchPageData({ path: requestedPathname });
 
       expect(fetch).toHaveBeenCalledWith(expectedUrl);
     });
 
     it('should call fetch on amp pages without .amp in pathname', async () => {
-      await fetchPageData(requestedPathname);
+      await fetchPageData({ path: requestedPathname });
 
       expect(fetch).toHaveBeenCalledWith(expectedUrl);
     });
 
     it('should return expected response', async () => {
-      const response = await fetchPageData(requestedPathname);
+      const response = await fetchPageData({ path: requestedPathname });
 
       expect(response).toEqual({
         json: {
@@ -53,7 +53,7 @@ describe('fetchPageData', () => {
   describe('Rejected fetch', () => {
     it('should return handle a rejected fetch', async () => {
       fetch.mockReject('TypeError: Failed to fetch');
-      const response = await fetchPageData(requestedPathname);
+      const response = await fetchPageData({ path: requestedPathname });
 
       expect(response).toEqual({
         status: 502,
@@ -72,7 +72,7 @@ describe('fetchPageData', () => {
       it('should return a 500 error code', async () => {
         setWindowValue('location', false);
 
-        const response = await fetchPageData(requestedPathname);
+        const response = await fetchPageData({ path: requestedPathname });
 
         expect(loggerMock.error).toBeCalledWith(DATA_FETCH_ERROR, {
           error:
@@ -91,7 +91,7 @@ describe('fetchPageData', () => {
       it('should return a 502 error code', async () => {
         setWindowValue('location', true);
 
-        const response = await fetchPageData(requestedPathname);
+        const response = await fetchPageData({ path: requestedPathname });
 
         expect(loggerMock.error).toBeCalledWith(DATA_FETCH_ERROR, {
           error:
@@ -110,7 +110,7 @@ describe('fetchPageData', () => {
     it('should return the status code as 404', async () => {
       fetch.mockResponse('Not found', { status: 404 });
 
-      const response = await fetchPageData(requestedPathname);
+      const response = await fetchPageData({ path: requestedPathname });
 
       expect(response).toEqual({
         status: 404,
@@ -131,7 +131,7 @@ describe('fetchPageData', () => {
       it('should log, and return the status code as 500', async () => {
         fetch.mockResponse("I'm a teapot", { status: 418 });
 
-        const response = await fetchPageData(requestedPathname);
+        const response = await fetchPageData({ path: requestedPathname });
 
         expect(loggerMock.error).toBeCalledWith(DATA_FETCH_ERROR, {
           error: `Error: Unexpected upstream response (HTTP status code 418) when requesting ${expectedUrl}`,
@@ -146,7 +146,7 @@ describe('fetchPageData', () => {
       it('should log, and propogate the status code as 500', async () => {
         fetch.mockResponse('Error', { status: 500 });
 
-        const response = await fetchPageData(requestedPathname);
+        const response = await fetchPageData({ path: requestedPathname });
 
         expect(loggerMock.error).toBeCalledWith(DATA_FETCH_ERROR, {
           error: `Error: Unexpected upstream response (HTTP status code 500) when requesting ${expectedUrl}`,
@@ -168,7 +168,7 @@ describe('fetchPageData', () => {
     it('should log, and return the status code as 502', async () => {
       fetch.mockResponse("I'm a teapot", { status: 418 });
 
-      const response = await fetchPageData(requestedPathname);
+      const response = await fetchPageData({ path: requestedPathname });
 
       expect(loggerMock.error).toBeCalledWith(DATA_FETCH_ERROR, {
         error: `Error: Unexpected upstream response (HTTP status code 418) when requesting ${expectedUrl}`,
@@ -183,7 +183,7 @@ describe('fetchPageData', () => {
     it('should log, and propogate the status code as 502', async () => {
       fetch.mockResponse('Internal server error', { status: 500 });
 
-      const response = await fetchPageData(requestedPathname);
+      const response = await fetchPageData({ path: requestedPathname });
 
       expect(loggerMock.error).toBeCalledWith(DATA_FETCH_ERROR, {
         error: `Error: Unexpected upstream response (HTTP status code 500) when requesting ${expectedUrl}`,

@@ -36,9 +36,12 @@ const getEpisodeAvailableUntil = path([
 ]);
 const getReleaseDateTimeStamp = path(['metadata', 'releaseDateTimeStamp']);
 
-export default async ({ path: pathname }) => {
+export default async ({ path: pathname, cmsType }) => {
   const onDemandRadioDataPath = overrideRendererOnTest(pathname);
-  const { json, ...rest } = await fetchPageData(onDemandRadioDataPath);
+  const { json, ...rest } = await fetchPageData({
+    path: onDemandRadioDataPath,
+    cmsType,
+  });
   const pageType = { metadata: { type: 'On Demand Radio' } };
 
   return {
