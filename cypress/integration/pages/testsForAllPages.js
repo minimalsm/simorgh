@@ -209,11 +209,11 @@ export const testsThatFollowSmokeTestConfigforAllPages = ({
                 switch (pageType) {
                   case 'articles':
                     description =
-                      (typeof body.promo.summary === 'string'
-                        ? body.promo.summary
-                        : body.promo.summary.blocks[0].model.blocks[0].model
-                            .blocks[0].model.text) ||
-                      body.promo.headlines.seoHeadline;
+                      typeof body.promo.summary === 'string' &&
+                      body.promo.summary
+                        ? body.promo.summary.blocks[0].model.blocks[0].model
+                            .blocks[0].model.text
+                        : body.promo.headlines.seoHeadline;
                     title = body.promo.headlines.seoHeadline;
                     break;
                   case 'frontPage':
