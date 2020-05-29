@@ -208,12 +208,13 @@ export const testsThatFollowSmokeTestConfigforAllPages = ({
                 let title;
                 switch (pageType) {
                   case 'articles':
-                    description =
-                      typeof body.promo.summary === 'string' &&
-                      body.promo.summary
-                        ? body.promo.summary.blocks[0].model.blocks[0].model
+                    // eslint-disable-next-line no-nested-ternary
+                    description = body.promo.summary
+                      ? typeof body.promo.summary === 'string'
+                        ? body.promo.summary
+                        : body.promo.summary.blocks[0].model.blocks[0].model
                             .blocks[0].model.text
-                        : body.promo.headlines.seoHeadline;
+                      : body.promo.headlines.seoHeadline;
                     title = body.promo.headlines.seoHeadline;
                     break;
                   case 'frontPage':
