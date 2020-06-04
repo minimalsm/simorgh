@@ -55,7 +55,8 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toHaveBeenCalledWith(INCLUDE_REQUEST_RECEIVED, {
-      url: 'https://foobar.com/includes/indepthtoolkit/quizzes/123-456',
+      pagePath: '/mundo/23263889',
+      includeUrl: 'https://foobar.com/includes/indepthtoolkit/quizzes/123-456',
     });
   });
 
@@ -90,7 +91,8 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toHaveBeenCalledWith(INCLUDE_REQUEST_RECEIVED, {
-      url: 'https://foobar.com/includes/idt2/111-222-333-444-555/html',
+      pagePath: '/mundo/23263889',
+      includeUrl: 'https://foobar.com/includes/idt2/111-222-333-444-555/html',
     });
   });
 
@@ -125,7 +127,8 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toHaveBeenCalledWith(INCLUDE_REQUEST_RECEIVED, {
-      url: 'https://foobar.com/includes/include/111-222-333-444-555',
+      pagePath: '/mundo/23263889',
+      includeUrl: 'https://foobar.com/includes/include/111-222-333-444-555',
     });
   });
 
@@ -160,7 +163,8 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toHaveBeenCalledWith(INCLUDE_REQUEST_RECEIVED, {
-      url: 'https://foobar.com/includes/indepthtoolkit/quizzes/123-456',
+      pagePath: '/mundo/23263889',
+      includeUrl: 'https://foobar.com/includes/indepthtoolkit/quizzes/123-456',
     });
   });
 
@@ -195,7 +199,8 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toHaveBeenCalledWith(INCLUDE_REQUEST_RECEIVED, {
-      url: 'https://foobar.com/includes/idt2/111-222-333-444-555/html',
+      pagePath: '/mundo/23263889',
+      includeUrl: 'https://foobar.com/includes/idt2/111-222-333-444-555/html',
     });
   });
 
@@ -230,7 +235,9 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toHaveBeenCalledWith(INCLUDE_REQUEST_RECEIVED, {
-      url: 'https://foobar.com/includes/news/special/111-222-333-444-555',
+      pagePath: '/mundo/23263889',
+      includeUrl:
+        'https://foobar.com/includes/news/special/111-222-333-444-555',
     });
   });
 
@@ -265,8 +272,9 @@ describe('convertInclude', () => {
     expect(loggerMock.info).not.toHaveBeenCalled();
     expect(loggerMock.error).toHaveBeenCalledTimes(1);
     expect(loggerMock.error).toBeCalledWith(INCLUDE_FETCH_ERROR, {
+      pagePath: '/mundo/23263889',
       status: 304,
-      url: 'https://foobar.com/includes/idt2/html',
+      includeUrl: 'https://foobar.com/includes/idt2/html',
     });
   });
 
@@ -284,8 +292,9 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toBeCalledWith(INCLUDE_UNSUPPORTED, {
+      pagePath: '/mundo/23263889',
       type: 'include',
-      url: '/idt3/111-222-333-444-555',
+      includeUrl: '/idt3/111-222-333-444-555',
     });
   });
 
@@ -303,8 +312,9 @@ describe('convertInclude', () => {
     expect(loggerMock.error).not.toHaveBeenCalled();
     expect(loggerMock.info).toHaveBeenCalledTimes(1);
     expect(loggerMock.info).toBeCalledWith(INCLUDE_UNSUPPORTED, {
+      pagePath: '/mundo/23263889',
       type: 'include',
-      url: 'idt3/111-222-333-444-555',
+      includeUrl: 'idt3/111-222-333-444-555',
     });
   });
 
@@ -323,11 +333,14 @@ describe('convertInclude', () => {
     expect(loggerMock.info).not.toHaveBeenCalled();
     expect(loggerMock.error).toHaveBeenCalledTimes(1);
     expect(loggerMock.error).toHaveBeenCalledWith(INCLUDE_MISSING_URL, {
-      required: false,
-      tile: 'An include with no href',
-      href: null,
-      platform: 'highweb',
-      type: 'include',
+      includeBlock: {
+        required: false,
+        tile: 'An include with no href',
+        href: null,
+        platform: 'highweb',
+        type: 'include',
+      },
+      pagePath: '/mundo/23263889',
     });
   });
 
@@ -348,8 +361,9 @@ describe('convertInclude', () => {
     expect(loggerMock.info).not.toHaveBeenCalled();
     expect(loggerMock.error).toHaveBeenCalledTimes(1);
     expect(loggerMock.error).toHaveBeenCalledWith(INCLUDE_ERROR, {
+      pagePath: '/mundo/23263889',
       error: 'Error: this is an error message',
-      url: 'https://foobar.com/includes/indepthtoolkit/quizzes/123-456',
+      includeUrl: 'https://foobar.com/includes/indepthtoolkit/quizzes/123-456',
     });
   });
 });

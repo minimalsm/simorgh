@@ -22,34 +22,38 @@ const buildIncludeUrl = (href, type) => {
   return `${process.env.SIMORGH_INCLUDES_BASE_URL}${withTrailingHref}${resolvers[type]}`;
 };
 
-const fetchMarkup = async url => {
+const fetchMarkup = async ({ includeUrl, pagePath }) => {
   try {
     /* The timeout value here is arbitrary and subject to change. It's purpose is to ensure that pending promises do not delay page rendering on the server.
       Using isomorphic-fetch means we use window.fetch, which does not have a timeout option, on the client and node-fetch, which does, on the server.
     */
-    const res = await fetch(url, { timeout: 3000 });
+    const res = await fetch(includeUrl, { timeout: 3000 });
     if (res.status !== 200) {
       logger.error(INCLUDE_FETCH_ERROR, {
+        pagePath,
         status: res.status,
-        url,
+        includeUrl,
       });
       return null;
     }
     const html = await res.text();
     logger.info(INCLUDE_REQUEST_RECEIVED, {
-      url,
+      pagePath,
+      includeUrl,
     });
     return html;
   } catch (error) {
     logger.error(INCLUDE_ERROR, {
+      pagePath,
       error: error.toString(),
-      url,
+      includeUrl,
     });
     return null;
   }
 };
 
 const convertInclude = async includeBlock => {
+  const pagePath = '/mundo/23263889';
   const supportedTypes = {
     indepthtoolkit: 'idt1',
     idt2: 'idt2',
@@ -62,7 +66,7 @@ const convertInclude = async includeBlock => {
   const { href, type, ...rest } = includeBlock;
 
   if (!href) {
-    logger.error(INCLUDE_MISSING_URL, includeBlock);
+    logger.error(INCLUDE_MISSING_URL, { pagePath, includeBlock });
     return null;
   }
 
@@ -82,8 +86,9 @@ const convertInclude = async includeBlock => {
   const includeType = supportedTypes[typeExtraction];
   if (!includeType) {
     logger.info(INCLUDE_UNSUPPORTED, {
+      pagePath,
       type,
-      url: href,
+      includeUrl: href,
     });
     return null;
   }
@@ -92,7 +97,10 @@ const convertInclude = async includeBlock => {
     type,
     model: {
       href,
-      html: await fetchMarkup(buildIncludeUrl(href, includeType)),
+      html: await fetchMarkup({
+        includeUrl: buildIncludeUrl(href, includeType),
+        pagePath,
+      }),
       type: includeType,
       ...rest,
     },
