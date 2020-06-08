@@ -13,7 +13,7 @@ const logger = nodeLogger(__filename);
 const buildIncludeUrl = (href, type) => {
   const resolvers = {
     idt1: '',
-    idt2: '/html',
+    idt2: '/html?renderer_env=live',
     vj: '',
   };
 

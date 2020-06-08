@@ -382,13 +382,6 @@
         "type": "paragraph"
       },
       {
-        "required": false,
-        "tile": "Include from VisJo",
-        "href": "/include/vjamericas/176-eclipse-lookup/mundo/app?responsive=true&newsapps=true&app-image=https://news.files.bbci.co.uk/vj/live/idt-images/image-slider-werty/venta-app_eclipse-mundo_bjd2w.png&app-clickable=true&amp-clickable=true&amp-image-height=360&amp-image-width=640&amp-image=https://news.files.bbci.co.uk/vj/live/idt-images/image-slider-werty/venta-app_eclipse-mundo_bjd2w.png",
-        "platform": "highweb",
-        "type": "include"
-      },
-      {
         "text": "Includes: IDT2",
         "markupType": "plain_text",
         "type": "paragraph"
@@ -396,7 +389,7 @@
       {
         "required": false,
         "tile": "IDT2 Include",
-        "href": "/idt2/cb1a5166-cfbb-4520-bdac-6159299acff6",
+        "href": "idt2/23bb773f-2408-4870-9f7a-0ba861f321ff",
         "platform": "highweb",
         "type": "include"
       },

@@ -29,6 +29,15 @@ const IncludeContainer = ({ html, type }) => {
   // that uses requireJS extensively. See https://github.com/bbc/simorgh/issues/5750
   const requireIncludeTypes = ['vj', 'idt1'];
 
+  const chartRegex = /\/static\/js\/lineChart|verticalChart/;
+
+  const hasChartOrMap = chartRegex.test(html);
+
+  if (type === 'idt2' && hasChartOrMap) {
+    // fallback to images
+    return null;
+  }
+
   const paths = `{
     'jquery-1':
       'https://static.bbc.co.uk/frameworks/jquery/0.4.1/sharedmodules/jquery-1.7.2',
