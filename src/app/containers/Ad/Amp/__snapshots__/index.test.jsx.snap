@@ -5,6 +5,11 @@ exports[`AMP Ads Snapshots should correctly render an AMP leaderboard ad 1`] = `
   background-color: #F6F6F6;
 }
 
+.amp-geo-pending .c0,
+.amp-geo-group-noAds .c0 {
+  display: none;
+}
+
 .c1 {
   margin: 0 auto;
   text-align: center;
@@ -86,67 +91,71 @@ exports[`AMP Ads Snapshots should correctly render an AMP leaderboard ad 1`] = `
       <div
         class="c0"
       >
+        <amp-geo
+          layout="nodisplay"
+        >
+          <script
+            type="application/json"
+          >
+            {"ISOCountryGroups":{"eea":["at","ax","be","bg","bl","cy","cz","de","dk","ea","ee","es","fi","fr","gb","gf","gg","gi","gp","gr","hr","hu","ic","ie","im","is","it","je","li","lt","lu","lv","mf","mq","mt","nc","nl","no","pf","pl","pm","pt","re","ro","se","si","sj","sk","tf","va","wf","yt"]}}
+          </script>
+        </amp-geo>
         <div
           class="c1"
         >
           <div
-            amp-access="toggles.ads.enabled"
-            amp-access-hide="true"
+            class="c2"
           >
-            <div
-              class="c2"
+            <a
+              class="c3"
+              dir="ltr"
+              href="https://www.bbc.com/usingthebbc/cookies/"
+              tabindex="-1"
             >
-              <a
-                class="c3"
-                dir="ltr"
-                href="https://www.bbc.com/usingthebbc/cookies/"
-                tabindex="-1"
-              >
-                Tori we dem pay for
-              </a>
-              <amp-ad
-                data-a4a-upgrade-type="amp-ad-network-doubleclick-impl"
-                data-amp-slot-index="0"
-                data-block-on-consent="default"
-                data-multi-size="320x50,300x50"
-                data-npa-on-unknown-consent="true"
-                data-slot="/4817/bbccom.test.site.amp.news"
+              Tori we dem pay for
+            </a>
+            <amp-ad
+              data-a4a-upgrade-type="amp-ad-network-doubleclick-impl"
+              data-amp-slot-index="0"
+              data-block-on-consent="default"
+              data-multi-size="320x50,300x50"
+              data-npa-on-unknown-consent="true"
+              data-slot="/4817/bbccom.test.site.amp.news"
+              height="50"
+              json="{\\"targeting\\":{\\"slot\\":\\"leaderboard\\",\\"asset_type\\":\\"index\\",\\"channel\\":\\"pidgin\\"}}"
+              media="(max-width: 62.9375rem)"
+              type="doubleclick"
+              width="320"
+            >
+              <amp-img
                 height="50"
-                json="{\\"targeting\\":{\\"slot\\":\\"leaderboard\\",\\"asset_type\\":\\"index\\",\\"channel\\":\\"pidgin\\"}}"
-                media="(max-width: 62.9375rem)"
-                type="doubleclick"
+                layout="responsive"
+                placeholder="true"
+                src="https://via.placeholder.com/320x50"
                 width="320"
-              >
-                <amp-img
-                  height="50"
-                  layout="responsive"
-                  placeholder="true"
-                  src="https://via.placeholder.com/320x50"
-                  width="320"
-                />
-              </amp-ad>
-              <amp-ad
-                data-a4a-upgrade-type="amp-ad-network-doubleclick-impl"
-                data-amp-slot-index="0"
-                data-block-on-consent="default"
-                data-multi-size="970x250,728x90"
-                data-npa-on-unknown-consent="true"
-                data-slot="/4817/bbccom.test.site.amp.news"
+              />
+            </amp-ad>
+            <amp-ad
+              data-a4a-upgrade-type="amp-ad-network-doubleclick-impl"
+              data-amp-slot-index="0"
+              data-block-on-consent="default"
+              data-multi-size="970x250,728x90"
+              data-npa-on-unknown-consent="true"
+              data-slot="/4817/bbccom.test.site.amp.news"
+              height="250"
+              json="{\\"targeting\\":{\\"slot\\":\\"leaderboard\\",\\"asset_type\\":\\"index\\",\\"channel\\":\\"pidgin\\"}}"
+              media="(min-width: 63rem)"
+              type="doubleclick"
+              width="970"
+            >
+              <amp-img
                 height="250"
-                json="{\\"targeting\\":{\\"slot\\":\\"leaderboard\\",\\"asset_type\\":\\"index\\",\\"channel\\":\\"pidgin\\"}}"
-                media="(min-width: 63rem)"
-                type="doubleclick"
+                layout="responsive"
+                placeholder="true"
+                src="https://via.placeholder.com/970x250"
                 width="970"
-              >
-                <amp-img
-                  height="250"
-                  layout="responsive"
-                  placeholder="true"
-                  src="https://via.placeholder.com/970x250"
-                  width="970"
-                />
-              </amp-ad>
-            </div>
+              />
+            </amp-ad>
           </div>
         </div>
       </div>
