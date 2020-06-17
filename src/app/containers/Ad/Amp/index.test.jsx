@@ -79,6 +79,14 @@ describe('AMP Ads', () => {
       expect(advertisementLabel).toHaveAttribute('tabIndex', '-1');
     });
 
+    it('should not display if AMP Geo information is yet to be fetched', () => {
+      // add test
+    });
+
+    it('should not display if the user is in a geo group that should not be shown ads', () => {
+      // add test
+    });
+
     describe('AMP_ACCESS_FETCH', () => {
       it('should retrieve data from the correct endpoint', () => {
         const ampAccessFetch = jest.fn().mockImplementation(AMP_ACCESS_FETCH);

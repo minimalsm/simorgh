@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import styled from 'styled-components';
 import { Helmet } from 'react-helmet';
+import AmpGeo from '@bbc/psammead-amp-geo';
 import {
   AMP_ACCESS_JS,
   AMP_ADS_JS,
@@ -19,6 +20,11 @@ import { ServiceContext } from '#contexts/ServiceContext';
 
 const FullWidthWrapper = styled.div`
   background-color: ${C_LUNAR_LIGHT};
+
+  .amp-geo-pending &,
+  .amp-geo-group-noAds & {
+    display: none;
+  }
 `;
 
 const StyledWrapper = styled.div`
@@ -119,42 +125,41 @@ const AmpAd = () => {
 
   return (
     <FullWidthWrapper>
+      <AmpGeo />
       <StyledWrapper>
         <Helmet>
           {AMP_ADS_JS}
           {AMP_ACCESS_JS}
           {AMP_ACCESS_FETCH(service)}
         </Helmet>
-        <div amp-access="toggles.ads.enabled" amp-access-hide="true">
-          <StyledAd>
-            <StyledLink
-              href={LABEL_LINK}
-              script={script}
-              service={service}
-              dir={dir}
-            >
-              {label}
-            </StyledLink>
-            <amp-ad {...ampAdPropsMobile({ service })}>
-              <amp-img
-                placeholder
-                width="320"
-                height="50"
-                src="https://via.placeholder.com/320x50"
-                layout="responsive"
-              />
-            </amp-ad>
-            <amp-ad {...ampAdPropsDesktop({ service })}>
-              <amp-img
-                placeholder
-                width="970"
-                height="250"
-                src="https://via.placeholder.com/970x250"
-                layout="responsive"
-              />
-            </amp-ad>
-          </StyledAd>
-        </div>
+        <StyledAd>
+          <StyledLink
+            href={LABEL_LINK}
+            script={script}
+            service={service}
+            dir={dir}
+          >
+            {label}
+          </StyledLink>
+          <amp-ad {...ampAdPropsMobile({ service })}>
+            <amp-img
+              placeholder
+              width="320"
+              height="50"
+              src="https://via.placeholder.com/320x50"
+              layout="responsive"
+            />
+          </amp-ad>
+          <amp-ad {...ampAdPropsDesktop({ service })}>
+            <amp-img
+              placeholder
+              width="970"
+              height="250"
+              src="https://via.placeholder.com/970x250"
+              layout="responsive"
+            />
+          </amp-ad>
+        </StyledAd>
       </StyledWrapper>
     </FullWidthWrapper>
   );
